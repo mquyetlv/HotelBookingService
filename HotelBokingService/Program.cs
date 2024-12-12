@@ -1,5 +1,8 @@
 
 using HotelBokingService.Connection;
+using HotelBokingService.Repository;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace HotelBokingService
 {
@@ -9,13 +12,22 @@ namespace HotelBokingService
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddControllers().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
 
+            // Add services to the container.
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddScoped<SqlConnectionFactory>();
+            builder.Services.AddScoped<SqlConnectionFactory>(); 
+            builder.Host.UseSerilog((context, services, configuration) => configuration
+                .ReadFrom.Configuration(context.Configuration)
+            .ReadFrom.Services(services));
+
+            builder.Services.AddScoped<UserRepository>();
 
             var app = builder.Build();
 
