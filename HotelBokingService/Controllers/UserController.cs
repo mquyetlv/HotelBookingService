@@ -7,7 +7,7 @@ using System.Net;
 namespace HotelBokingService.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly UserRepository _userRepository;

@@ -28,6 +28,7 @@ namespace HotelBokingService
             .ReadFrom.Services(services));
 
             builder.Services.AddScoped<UserRepository>();
+            builder.Services.AddScoped<RoomTypeRepository>();
 
             var app = builder.Build();
 

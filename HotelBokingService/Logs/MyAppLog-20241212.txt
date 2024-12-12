@@ -123,3 +123,41 @@ Microsoft.Data.SqlClient.SqlException (0x80131904): The target principal name is
    at HotelBokingService.Repository.UserRepository.AddUserAsync(CreateUserDTO user) in H:\Workspace\HotelBokingService\HotelBokingService\Repository\UserRepository.cs:line 38
    at HotelBokingService.Controllers.UserController.AddUser(CreateUserDTO createUserDTO) in H:\Workspace\HotelBokingService\HotelBokingService\Controllers\UserController.cs:line 31
 ClientConnectionId:f80623e9-45c3-4bc3-b810-2a9140f592cd
+2024-12-12 22:41:06.388 +07:00 [INF] Request Received for GetAllUsers, IsActive: True
+2024-12-12 22:41:06.721 +07:00 [ERR] Error listing users
+Microsoft.Data.SqlClient.SqlException (0x80131904): The target principal name is incorrect.  Cannot generate SSPI context.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, SqlCommand command, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.SSPIError(String error, String procedure)
+   at Microsoft.Data.SqlClient.TdsParser.SSPIData(Byte[] receivedBuff, UInt32 receivedLength, Byte[]& sendBuff, UInt32& sendLength)
+   at Microsoft.Data.SqlClient.TdsParser.ProcessSSPI(Int32 receivedLength)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool, Func`3 accessTokenCallback)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at HotelBokingService.Repository.UserRepository.ListAllUsersAsync(Nullable`1 isActive) in H:\Workspace\HotelBokingService\HotelBokingService\Repository\UserRepository.cs:line 92
+   at HotelBokingService.Controllers.UserController.GetAllUsers(Nullable`1 isActive) in H:\Workspace\HotelBokingService\HotelBokingService\Controllers\UserController.cs:line 76
+ClientConnectionId:c9034fe2-e64f-47b9-8a0b-6857d1209ffd
+2024-12-12 22:43:25.254 +07:00 [INF] Request Received for GetAllUsers, IsActive: 
+2024-12-12 22:44:08.821 +07:00 [INF] Request Received for AddUser: {"Email":"user@example.com","Password":"string","$type":"CreateUserDTO"}
+2024-12-12 22:44:08.892 +07:00 [INF] AddUser Response From Repository: {"UserId":0,"Message":"The INSERT statement conflicted with the FOREIGN KEY constraint \"FK__Users__RoleID__3D5E1FD2\". The conflict occurred in database \"HotelDB\", table \"dbo.UserRoles\", column 'RoleID'.","IsCreated":false,"$type":"CreateUserResponseDTO"}
+2024-12-12 22:49:42.444 +07:00 [INF] Request Received for GetAllRoomTypes, IsActive: 
+2024-12-12 22:49:55.103 +07:00 [INF] Request Received for CreateRoomType: {"TypeName":"string","AccessibilityFeatures":"string","Description":"string","$type":"CreateRoomTypeDTO"}
+2024-12-12 22:49:55.131 +07:00 [INF] CreateRoomType Response From Repository: {"RoomTypeId":1,"Message":"Room type created successfully.","IsCreated":true,"$type":"CreateRoomTypeResponseDTO"}
+2024-12-12 22:50:01.416 +07:00 [INF] Request Received for CreateRoomType: {"TypeName":"string","AccessibilityFeatures":"string","Description":"string","$type":"CreateRoomTypeDTO"}
+2024-12-12 22:50:01.440 +07:00 [INF] CreateRoomType Response From Repository: {"RoomTypeId":0,"Message":"Room type name already exists.","IsCreated":false,"$type":"CreateRoomTypeResponseDTO"}
+2024-12-12 22:50:10.924 +07:00 [INF] Request Received for CreateRoomType: {"TypeName":"string 2","AccessibilityFeatures":"string","Description":"string","$type":"CreateRoomTypeDTO"}
+2024-12-12 22:50:10.955 +07:00 [INF] CreateRoomType Response From Repository: {"RoomTypeId":2,"Message":"Room type created successfully.","IsCreated":true,"$type":"CreateRoomTypeResponseDTO"}
+2024-12-12 22:50:17.131 +07:00 [INF] Request Received for GetAllRoomTypes, IsActive: 
+2024-12-12 22:50:28.776 +07:00 [INF] Request Received for GetRoomTypeById, RoomTypeID: 1
+2024-12-12 22:50:31.570 +07:00 [INF] Request Received for GetRoomTypeById, RoomTypeID: 1
